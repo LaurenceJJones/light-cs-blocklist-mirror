@@ -41,6 +41,10 @@ else
     fi
 fi
 
-/bin/sh -c "while true; do /usr/bin/curl -s -H 'X-Api-Key: $CROWDSEC_API_KEY' $CROWDSEC_API_URL/v1/decisions | /usr/bin/jq -r '.[].value' > /usr/share/nginx/html/list.txt ; sleep 10; done"&
+# add a check to see if the files are same wc -l /usr/share/nginx/html/list.txt /tmp/list.txt
+# if they are not same then mv /tmp/list.txt /usr/share/nginx/html/list.txt
+# else sleep 10
+
+/bin/sh -c "while true; do /usr/bin/curl -s -H 'X-Api-Key: $CROWDSEC_API_KEY' $CROWDSEC_API_URL/v1/decisions | /usr/bin/jq -r '.[].value' > /tmp/list.txt; mv /tmp/list.txt /usr/share/nginx/html/list.txt ; sleep 10; done"&
 
 nginx -g "daemon off;"
