@@ -162,3 +162,7 @@ Percentage of the requests served within a certain time (ms)
 99%   1984
 100%   4031 (longest request)
 ```
+
+Conclusion
+----------
+As you can see, the nginx list is much faster than the crowdsec list. This is because the crowdsec list is generated on the fly and is not cached. The nginx list is cached and only updates when the md5sum of the file changes. This means that the nginx list is much faster and more efficient than the crowdsec list. If you want a faster and smaller footprint then use the nginx list. Keep in mind there is no other formats other than plain at the moment.
