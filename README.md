@@ -1,3 +1,5 @@
+WIP (There will not be all the features listed in cs-blocklist-mirror, however, for me personally I dont need all of them and want to save resources)
+
 When serving just a basic blocklist, there a better way to serve the list than having a binary that running uses 60MB RAM. This repo holds a Dockerfile that builds a nginx image that has a background task that curl the decision endpoint and creates a file called list.txt on port 80. In my testing this reduced 60MB ram down to 6mb as nginx is not holding the decision in memory like the blocklist mirror does.
 
 If you wish to run this outside of a container context, just create a service file example
