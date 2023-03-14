@@ -8,12 +8,14 @@ services:
     environment:
       - CROWDSEC_API_URL=http://crowdsec:8080
       - CROWDSEC_API_KEY=1234
+      # Default none, basic, ip_based
       - AUTH_TYPE=none
+      # Username and password for basic auth
       - USERNAME=TEST
       - PASSWORD=TEST
-      # Default localhost and docker network cidr
+      # Default localhost and docker network cidr used for ip based auth
       - IP=127.0.0.1,::1,172.16.0.0/12
-  crowdsec:
-    image: crowdsecurity/crowdsec:v1.5.0-rc2
-    environment:
-      - BOUNCER_KEY_NGINX=1234
+  # crowdsec:
+  #   image: crowdsecurity/crowdsec:v1.5.0-rc2
+  #   environment:
+  #     - BOUNCER_KEY_NGINX=1234

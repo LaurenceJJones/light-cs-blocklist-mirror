@@ -21,9 +21,9 @@ else
 	    echo "PASSWORD is not set"
 	    exit 1
 	fi
-	htpasswd -b -c /etc/nginx/.htpasswd "$USERNAME" "$PASSWORD"
-	sed -i "s/#auth_basic/auth_basic/g" /etc/nginx/conf.d/default.conf
-	sed -i "s/#auth_basic_user_file/auth_basic_user_file/g" /etc/nginx/conf.d/default.conf
+	/usr/bin/htpasswd -b -c /etc/nginx/.htpasswd "$USERNAME" "$PASSWORD"
+	/bin/sed -i "s/#auth_basic/auth_basic/g" /etc/nginx/conf.d/default.conf
+	/bin/sed -i "s/#auth_basic_user_file/auth_basic_user_file/g" /etc/nginx/conf.d/default.conf
     elif [ "$AUTH_TYPE" = "ip_based" ]; then
 	if [ -z "$IP" ]; then
 	    echo "AUTH_TYPE is set to ip_based but no IP is not set"
@@ -43,4 +43,4 @@ else
 fi
 
 /bin/sh /nginx-list.sh&
-nginx -g "daemon off;"
+/usr/sbin/nginx -g "daemon off;"
