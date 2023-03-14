@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-RUN apk update && apk add curl && apk add jq
+RUN apk update && apk add curl && apk add jq && apk add apache2-utils && rm -rf /var/cache/apk/*
 
 COPY docker_start.sh /docker_start.sh
 
