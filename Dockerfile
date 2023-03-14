@@ -1,4 +1,4 @@
-FROM docker://nginx:alpine
+FROM nginx:alpine
 
 RUN apk update && apk add curl && apk add jq
 
