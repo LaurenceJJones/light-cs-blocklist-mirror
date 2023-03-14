@@ -1,3 +1,4 @@
+#!/bin/sh
 if [ -z "$CROWDSEC_API_KEY" ]; then
     echo "CROWDSEC_API_KEY is not set"
     exit 1
@@ -28,7 +29,7 @@ else
 	    echo "AUTH_TYPE is set to ip_based but no IP is not set"
 	    exit 1
 	fi
-	for ip in $(echo $IP | sed "s/,/ /g")
+	for ip in $(echo "$IP" | sed "s/,/ /g")
 	do
 	    echo "allow $ip;" >> /etc/nginx/conf.d/allow.conf
 	done
@@ -41,10 +42,5 @@ else
     fi
 fi
 
-# add a check to see if the files are same wc -l /usr/share/nginx/html/list.txt /tmp/list.txt
-# if they are not same then mv /tmp/list.txt /usr/share/nginx/html/list.txt
-# else sleep 10
-
-/bin/sh -c "while true; do /usr/bin/curl -s -H 'X-Api-Key: $CROWDSEC_API_KEY' $CROWDSEC_API_URL/v1/decisions | /usr/bin/jq -r '.[].value' > /tmp/list.txt; mv /tmp/list.txt /usr/share/nginx/html/list.txt ; sleep 10; done"&
-
+/bin/sh /nginx-list.sh&
 nginx -g "daemon off;"
