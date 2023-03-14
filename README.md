@@ -13,7 +13,7 @@ You can also provide these environment variables to the container image and ngin
 
 * CROWDSEC_API_URL - The URL to the crowdsec API
 * CROWDSEC_API_KEY - The API key to use to authenticate to the API
-* UPDATE_FREQUENCY - The frequency to update the list. Default is 5 minutes
+* UPDATE_FREQUENCY - The frequency to update the list. Default is 10 seconds (To improve performance for nginx the file will only update if the md5sum of the file changes)
 
 If you wish to run this outside of a container context, just create a service file example
 
